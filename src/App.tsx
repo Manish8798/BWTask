@@ -55,7 +55,7 @@ const App = () => {
               }
               return <Icon name={iconName} size={size} color={color} />;
             },
-            tabBarActiveTintColor: '#000',
+            tabBarActiveTintColor: '#1a3b5d',
             tabBarInactiveTintColor: '#B2BEB5',
           })}>
           <Tab.Screen name="Discover" component={DiscoverScreen} />
