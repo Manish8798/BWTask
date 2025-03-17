@@ -10,6 +10,7 @@ export default [
     location: 'Najafgarh New Delhi, Delhi Division, Delhi, 110043, India',
     image: require('../assets/Jeremy_Meeks.jpg'),
     likes: 1,
+    category: 'Entertainment',
   },
   {
     id: 2,
@@ -23,6 +24,7 @@ export default [
     location: 'Najafgarh New Delhi, Delhi Division, Delhi, 110043, India',
     image: require('../assets/Justin_Bieber.jpg'),
     likes: 2,
+    category: 'Entertainment',
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ export default [
     location: 'Najafgarh New Delhi, Delhi Division, Delhi, 110043, India',
     image: require('../assets/Henry_Cavill.jpg'),
     likes: 3,
+    category: 'Lifestyle',
   },
   {
     id: 4,
@@ -49,6 +52,7 @@ export default [
     location: 'Najafgarh New Delhi, Delhi Division, Delhi, 110043, India',
     image: require('../assets/david.jpg'),
     likes: 4,
+    category: 'Lifestyle',
   },
   {
     id: 5,
@@ -62,5 +66,6 @@ export default [
     location: 'Najafgarh New Delhi, Delhi Division, Delhi, 110043, India',
     image: require('../assets/Zayn.jpg'),
     likes: 5,
+    category: 'Entertainment',
   },
 ];
