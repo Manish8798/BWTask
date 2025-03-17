@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SocialMediaCard = ({user}) => {
-  const {name, city, date, views, subtitle, location, image} = user;
+  const {name, city, date, views, subtitle, location, image, id, likes} = user;
+  const [expanded, setExpanded] = useState(-1);
+  const [isFollowed, setIsFollowed] = useState([]);
 
   return (
     <View style={styles.cardContainer}>
@@ -17,8 +19,18 @@ const SocialMediaCard = ({user}) => {
             <Text style={styles.location}>{city}</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.followButton}>
-          <Text style={styles.followButtonText}>Follow</Text>
+        <TouchableOpacity
+          style={styles.followButton}
+          onPress={() => {
+            if (isFollowed.includes(id)) {
+              setIsFollowed(isFollowed.filter(item => item !== id));
+            } else {
+              setIsFollowed([...isFollowed, id]);
+            }
+          }}>
+          <Text style={styles.followButtonText}>
+            {isFollowed.includes(id) ? 'Following' : 'Follow'}
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -37,14 +49,29 @@ const SocialMediaCard = ({user}) => {
       </View>
 
       {/* Post caption */}
-      <Text style={styles.captionText}>{subtitle}</Text>
+      {/* <Text style={styles.captionText}>{subtitle}</Text> */}
+      <Text
+        style={[styles.captionText, subtitle.length < 60 && {marginBottom: 15}]}
+        numberOfLines={expanded == id ? undefined : 2}>
+        {subtitle}
+      </Text>
+      {subtitle.length > 60 && expanded !== id && (
+        <TouchableOpacity onPress={() => setExpanded(id)}>
+          <Text style={styles.moreText}>...more</Text>
+        </TouchableOpacity>
+      )}
+      {expanded === id && (
+        <TouchableOpacity onPress={() => setExpanded(-1)}>
+          <Text style={styles.moreText}>Show less</Text>
+        </TouchableOpacity>
+      )}
 
       {/* Engagement buttons */}
       <View style={styles.engagementContainer}>
         <TouchableOpacity style={styles.engagementButton}>
           <Icon name="heart-outline" size={20} color="#1a3b5d" />
           <View style={styles.badge}>
-            <Text style={styles.badgeText}>1</Text>
+            <Text style={styles.badgeText}>{likes}</Text>
           </View>
         </TouchableOpacity>
 
@@ -157,7 +184,7 @@ const styles = StyleSheet.create({
   captionText: {
     fontSize: 14,
     color: '#333',
-    marginBottom: 15,
+    // marginBottom: 15,
   },
   engagementContainer: {
     flexDirection: 'row',
@@ -195,6 +222,12 @@ const styles = StyleSheet.create({
     color: '#666',
     marginLeft: 5,
     flex: 1,
+  },
+  moreText: {
+    fontSize: 16,
+    color: '#000',
+    fontWeight: 'bold',
+    marginBottom: 15,
   },
 });
 

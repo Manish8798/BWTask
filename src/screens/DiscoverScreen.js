@@ -9,7 +9,7 @@ const DiscoverScreen = () => {
       <FlatList
         data={localData}
         renderItem={({item}) => <SocialMediaCard user={item} />}
-        contentContainerStyle={{paddingBottom: 60}}
+        contentContainerStyle={{paddingBottom: 60, paddingTop: 10}}
       />
     </SafeAreaView>
   );
