@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 
 const AddScreen = () => {
   return (
-    <View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       <Text>Add</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
